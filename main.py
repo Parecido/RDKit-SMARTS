@@ -6,8 +6,12 @@ from rdkit.Chem import AllChem
 
 def transform(smarts, smiles):
     try:
+        if isinstance(smiles, str):
+            smiles = (smiles,)
+
+        mols = ([Chem.MolFromSmiles(code) for code in smiles])
         rxn = AllChem.ReactionFromSmarts(smarts)
-        ps = rxn.RunReactants((Chem.MolFromSmiles(smiles),))
+        ps = rxn.RunReactants(mols)
     except Exception as e:
         raise HTTPException(status_code=422, detail=str(e))
         

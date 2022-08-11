@@ -43,7 +43,7 @@ print(r.json())
 
 #### Input structure
 
-The input file should contain the "reaction_smarts" and "reactants" keys, which correspond to the SMARTS reaction and SMILES molecular code, respectively. Both keys are of type string.
+The input file should contain the "reaction_smarts" and "reactants" keys, which correspond to the SMARTS reaction and SMILES molecular code, respectively. The "reaction_smarts" key must be of string type. The "reactants" may be string or list of strings.
 ```
 {
     'reaction_smarts': '[c:8]-[c:6]>>[c:8][I:55].[B:99][c:6]',
@@ -77,7 +77,6 @@ Michal Michalski ([Git](https://github.com/Parecido), [LinkedIn](https://www.lin
 
 ## TODO
 
-* Support more than one reagent
 * Stereochemistry (RDKit does not support non-tetrahedral chiral classes)
 * Test cis-trans isomerism (The new version of RDKit should support it)
 
