@@ -53,7 +53,7 @@ The input file should contain the "reaction_smarts" and "reactants" keys, which 
 
 #### Output structure
 
-The RDKit-SMARTS program sends json with "products_valid" and "products_invalid" keys with SMILES code. For more details see "Wrong structures" section.
+The RDKit-SMARTS sends json with "products_valid" and "products_invalid" keys with SMILES code. For more details see "Wrong structures" section.
 ```
 {
     'products_valid': [['Cc1cc(C)cc(-c2ccc(C)c(I)c2)c1', 'Bc1ccc(C)cc1'], ['Cc1ccc(I)cc1', 'Bc1cc(-c2cc(C)cc(C)c2)ccc1C'], ['Cc1cc(C)cc(I)c1', 'Bc1ccc(C)c(-c2ccc(C)cc2)c1'], ['Cc1ccc(-c2cc(I)ccc2C)cc1', 'Bc1cc(C)cc(C)c1']],
@@ -69,7 +69,7 @@ SMARTS can generate several identical solutions for the same molecule. This is d
 
 #### Wrong structures
 
-SMARTS can sometimes lead to a chemically questionable product structure. To avoid this problem, sanitization has been applied. If RDKit-SMARTS obtains a structure that is not chemically represented and cannot be corrected, then it will not be sent to the output.
+SMARTS can sometimes lead to a chemically questionable product structure. To avoid this problem, sanitization has been applied. If program obtains a structure that is not chemically represented and cannot be corrected, then it will be sent as "products_invalid".
 
 ## Authors
 
@@ -79,5 +79,5 @@ Michal Michalski ([Git](https://github.com/Parecido), [LinkedIn](https://www.lin
 
 * Support more than one reagent
 * Stereochemistry (RDKit does not support non-tetrahedral chiral classes)
-* Test cis-trans isomerism (The new version of RDKit should supports it)
+* Test cis-trans isomerism (The new version of RDKit should support it)
 
