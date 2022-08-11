@@ -64,22 +64,11 @@ The RDKit-SMARTS program sends json with "products_smiles" key, which contains S
 
 #### Molecular symmetry
 
-SMARTS can generate several identical solutions for the same molecule. This is due to the molecular symmetry, which modifies the molecule in several identical ways. Therefore, RDKit-SMARTS only generates a list of unique SMILES products.
-
-#### Wrong structures
-
-SMARTS can sometimes lead to a chemically questionable product structure. To avoid this problem, sanitization has been applied. If RDKit-SMARTS obtains a structure that is not chemically represented and cannot be corrected, then it will not be sent to the output.
-
-### Output limits
-
-#### Molecular symmetry
-
 SMARTS can generate several identical solutions for the same molecule. This is due to the molecular symmetry, which modifies the molecule in several identical ways. Therefore, RDKit-SMARTS only generates a list of unique products.
 
 #### Wrong structures
 
 SMARTS can sometimes lead to a chemically questionable product structure. To avoid this problem, sanitization has been applied. If RDKit-SMARTS obtains a structure that is not chemically represented and cannot be corrected, then it will not be sent to the output.
-
 
 ## Authors
 
