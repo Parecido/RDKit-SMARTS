@@ -53,10 +53,11 @@ The input file should contain the "reaction_smarts" and "reactants" keys, which 
 
 #### Output structure
 
-The RDKit-SMARTS program sends json with "products_smiles" key, which contains SMILES codes of possible products.
+The RDKit-SMARTS program sends json with "products_valid" and "products_invalid" keys with SMILES code. For more details see "Wrong structures" section.
 ```
 {
-    'products_smiles': [['Cc1cc(C)cc(I)c1', 'Bc1ccc(C)c(-c2ccc(C)cc2)c1'], ['Cc1cc(C)cc(-c2ccc(C)c(I)c2)c1', 'Bc1ccc(C)cc1'], ['Cc1ccc(I)cc1', 'Bc1cc(-c2cc(C)cc(C)c2)ccc1C'], ['Cc1ccc(-c2cc(I)ccc2C)cc1', 'Bc1cc(C)cc(C)c1']]
+    'products_valid': [['Cc1cc(C)cc(-c2ccc(C)c(I)c2)c1', 'Bc1ccc(C)cc1'], ['Cc1ccc(I)cc1', 'Bc1cc(-c2cc(C)cc(C)c2)ccc1C'], ['Cc1cc(C)cc(I)c1', 'Bc1ccc(C)c(-c2ccc(C)cc2)c1'], ['Cc1ccc(-c2cc(I)ccc2C)cc1', 'Bc1cc(C)cc(C)c1']],
+    'products_invalid': []
 }
 ```
 
@@ -77,6 +78,6 @@ Michal Michalski ([Git](https://github.com/Parecido), [LinkedIn](https://www.lin
 ## TODO
 
 * Support more than one reagent
-* Stereochemistry (Non-tetrahedral chiral classes)
-* Test cis-trans isomerism (The new version of RDKit supports it)
+* Stereochemistry (RDKit does not support non-tetrahedral chiral classes)
+* Test cis-trans isomerism (The new version of RDKit should supports it)
 

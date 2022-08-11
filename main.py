@@ -15,7 +15,8 @@ def transform(smarts, smiles):
 
 
 def analyse_reactions(ps):
-    smiles = []
+    smiles_valid = []
+    smiles_invalid = []
     
     for reaction in ps:
         products = []
@@ -23,15 +24,19 @@ def analyse_reactions(ps):
         for reactant in reaction:
             try:
                 Chem.SanitizeMol(reactant)
-                products.append(Chem.MolToSmiles(reactant))
-            except ValueError:
+                products.append(reactant)
+            except Exception:
                 break
                 
         if len(products) == len(reaction):
-            smiles.append(products)
-        
-    unique_smiles = [code for code in set(tuple(code) for code in smiles)]
-    return unique_smiles
+            smiles_valid.append(Chem.MolToSmiles(reactant) for reactant in reaction)
+        else:
+            smiles_invalid.append(Chem.MolToSmiles(reactant) for reactant in reaction)
+
+    unique_smiles_valid = [code for code in set(tuple(code) for code in smiles_valid)]
+    unique_smiles_invalid = [code for code in set(tuple(code) for code in smiles_invalid)]
+
+    return unique_smiles_valid, unique_smiles_invalid
 
 
 app = FastAPI()
@@ -43,10 +48,11 @@ async def run_smarts(request: InputValidator):
     reactants = request.reactants
     
     ps = transform(reaction_smarts, reactants)
-    smiles = analyse_reactions(ps)
+    valid, invalid = analyse_reactions(ps)
     
-    response = { 
-        "products_smiles": smiles,
+    response = {
+        "products_valid": valid,
+        "products_invalid": invalid,
     }
 
     return response
