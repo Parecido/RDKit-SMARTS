@@ -17,5 +17,5 @@ class InputValidator(BaseModel):
     def check_if_smiles_valid(cls, value):
         molecule = Chem.MolFromSmiles(value)
         if molecule is None:
-            raise HTTPException(status_code=422, detail="SMILES is not correct.")
+            raise HTTPException(status_code=422, detail="SMILES code is not correct.")
         return value
