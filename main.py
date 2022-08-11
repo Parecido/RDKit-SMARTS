@@ -25,17 +25,17 @@ def analyse_reactions(ps):
     for reaction in ps:
         products = []
         
-        for reactant in reaction:
+        for product in reaction:
             try:
-                Chem.SanitizeMol(reactant)
-                products.append(reactant)
+                Chem.SanitizeMol(product)
+                products.append(product)
             except Exception:
                 break
                 
         if len(products) == len(reaction):
-            smiles_valid.append(Chem.MolToSmiles(reactant) for reactant in reaction)
+            smiles_valid.append(Chem.MolToSmiles(product) for product in reaction)
         else:
-            smiles_invalid.append(Chem.MolToSmiles(reactant) for reactant in reaction)
+            smiles_invalid.append(Chem.MolToSmiles(product) for product in reaction)
 
     unique_smiles_valid = [code for code in set(tuple(code) for code in smiles_valid)]
     unique_smiles_invalid = [code for code in set(tuple(code) for code in smiles_invalid)]
